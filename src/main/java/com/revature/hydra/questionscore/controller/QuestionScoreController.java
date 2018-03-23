@@ -4,8 +4,8 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +25,8 @@ public class QuestionScoreController {
 	@Autowired
 	private QuestionScoreRepository questionScoreRepository;
 	
-	@RequestMapping(value = "/question/score", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> questionScore(@RequestParam(value="score") Integer score, @RequestParam(value="comment") String comment, @RequestParam(value="questionId") Integer questionId, @RequestParam(value="beginTime") Date beginTime, @RequestParam(value="screeningId") Integer screeningId) {
-		log.info("Scoring question of id: " + questionId);
+	@RequestMapping(value = "/question/score", method = RequestMethod.POST)
+	public ResponseEntity<Void> questionScore(@RequestParam(name="score") Integer score, @RequestParam(name="comment") String comment, @RequestParam(name="questionId") Integer questionId, @RequestParam(name="beginTime") @DateTimeFormat(pattern="EEE MMM dd HH:mm:ss z yyyy") Date beginTime, @RequestParam(name="screeningId") Integer screeningId) {
 		questionScoreRepository.save(new SimpleQuestionScore(questionId, screeningId, score.doubleValue(), comment, beginTime));
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
