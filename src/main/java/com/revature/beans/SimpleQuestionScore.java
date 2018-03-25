@@ -50,6 +50,14 @@ public class SimpleQuestionScore {
 		this.commentary = commentary;
 		this.beginTime = beginTime;
 	}
+	
+	
+
+	public SimpleQuestionScore() {
+		super();
+	}
+
+
 
 	public Integer getQuestionId() {
 		return questionId;
