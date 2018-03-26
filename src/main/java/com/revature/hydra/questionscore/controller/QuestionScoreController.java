@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.SimpleQuestionScore;
-import com.revature.hydra.questionscore.data.QuestionScoreRepository;
+import com.revature.hydra.questionscore.service.QuestionScoreCompositionService;
 
 @RestController
 @CrossOrigin
@@ -23,20 +23,26 @@ public class QuestionScoreController {
 	private static final Logger log = Logger.getLogger(QuestionScoreController.class);
 
 	@Autowired
-	private QuestionScoreRepository questionScoreRepository;
+	private QuestionScoreCompositionService questionScoreService;
 
+	/**
+	 * Create a new Question Score and persist it in the database.
+	 * 
+	 * @param questionScore
+	 * @return
+	 */
 	@RequestMapping(value = "/question/score", method = RequestMethod.POST)
 	public ResponseEntity<Void> questionScore(@RequestBody SimpleQuestionScore questionScore) {
-		questionScoreRepository
+		questionScoreService
 				.save(new SimpleQuestionScore(questionScore.getQuestionId(), questionScore.getScreeningId(),
 						questionScore.getScore(), questionScore.getCommentary(), questionScore.getBeginTime()));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "question/viewScores/{screeningId}", method = RequestMethod.GET)
+	@RequestMapping(value = "question/viewScoresByScreening/{screeningId}", method = RequestMethod.GET)
 	public ResponseEntity<List<SimpleQuestionScore>> getScoresByScreeningId(
 			@PathVariable("screeningId") Integer screeningId) {
-		List<SimpleQuestionScore> scoreList = questionScoreRepository.findByScreeningId(screeningId);
+		List<SimpleQuestionScore> scoreList = questionScoreService.findByScreeningId(screeningId);
 		return new ResponseEntity<List<SimpleQuestionScore>>(scoreList, HttpStatus.OK);
 	}
 
