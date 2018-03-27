@@ -29,7 +29,7 @@ public class QuestionScoreController {
 	 * Create a new Question Score and persist it in the database.
 	 * 
 	 * @param questionScore
-	 * @return
+	 * @return Response entity with HttpStatus OK
 	 */
 	@RequestMapping(value = "/question/score", method = RequestMethod.POST)
 	public ResponseEntity<Void> questionScore(@RequestBody SimpleQuestionScore questionScore) {
@@ -39,6 +39,12 @@ public class QuestionScoreController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
+	/**
+	 * Gets scores of given id
+	 * 
+	 * @param screeningId Id of Screening
+	 * @return List of Question scores
+	 */
 	@RequestMapping(value = "question/viewScoresByScreening/{screeningId}", method = RequestMethod.GET)
 	public ResponseEntity<List<SimpleQuestionScore>> getScoresByScreeningId(
 			@PathVariable("screeningId") Integer screeningId) {

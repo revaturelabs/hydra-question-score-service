@@ -10,6 +10,12 @@ import com.revature.beans.SimpleQuestionScore;
 @Repository
 public interface QuestionScoreRepository extends JpaRepository<SimpleQuestionScore, Integer> {
 
+	/**
+	 * Finds question scores containing given screening id
+	 * 
+	 * @param screeningId Id of Screening
+	 * @return List of question scores
+	 */
 	List<SimpleQuestionScore> findByScreeningId(Integer screeningId);
 	
 }

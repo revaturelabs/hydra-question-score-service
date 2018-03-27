@@ -18,8 +18,8 @@ public class QuestionScoreMessageProcessor {
 	 * Process a Json request to execute methods. Method list: findByScreeningId -
 	 * find all SimpleQuestionScores for a single screening ID
 	 * 
-	 * @param request
-	 * @return
+	 * @param request JsonObject as a request
+	 * @return List of question scores
 	 */
 	public static List<SimpleQuestionScore> processQuestionScoreRequest(JsonObject request) {
 		String methodName = request.get("methodName").getAsString();

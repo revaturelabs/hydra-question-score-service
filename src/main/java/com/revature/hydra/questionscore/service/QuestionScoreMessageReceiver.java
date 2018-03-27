@@ -16,8 +16,8 @@ public class QuestionScoreMessageReceiver {
 	/**
 	 * Listen for requests for SimpleQuestionScore objects
 	 * 
-	 * @param message
-	 * @return
+	 * @param message Message to be received
+	 * @return List of simple question scores
 	 */
 	@RabbitListener(queues = "revature.hydra.repos.questionscore")
 	public List<SimpleQuestionScore> receiveSimpleQuestionScoreRequest(String message){
