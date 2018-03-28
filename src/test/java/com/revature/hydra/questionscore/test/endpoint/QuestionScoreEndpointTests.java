@@ -3,22 +3,28 @@ package com.revature.hydra.questionscore.test.endpoint;
 import java.util.Date;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.google.gson.JsonObject;
+import com.revature.hydra.test.util.TestContext;
+import com.revature.hydra.test.util.WebAppContext;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = { TestContext.class, WebAppContext.class })
 @DataJpaTest
 @WebAppConfiguration
+@Ignore
 public class QuestionScoreEndpointTests {
 	
 	@Test
