@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * QuestionScore service main class
  */
-//@EnableSwagger2
+@EnableSwagger2
 @SpringBootApplication
 @EnableEurekaClient
 @EntityScan(value = "com.revature.beans")
